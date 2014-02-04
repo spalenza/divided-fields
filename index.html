@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN""
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html>
+  <head>
+    <title>Divided Fields</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="mustache.js" type="text/javascript" charset="utf-8"></script>
+    <script src="divided-fields.js" type="text/javascript" charset="utf-8"></script>
+
+    <script type="text/javascript" language="javascript" charset="utf-8">
+      $(document).ready(function() {
+        $(".source").dividedFields({
+          container: ".container",
+          addBtn: ".container a.add",
+          removeBtn: ".remove",
+          fieldPartial: "#field-partial",
+          fieldsTemplate: "#fields-template",
+          inputConainter: ".inputs"
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h1>Divided Fields</h1>
+
+    <input type="text" value="29060000-29060111,29070000-29080000" class="source" />
+
+    <div class="container">
+      <a href="#" class="add">Add</a>
+    </div>
+
+    <script type="text/html" id="field-partial">
+      <div class="inputs">
+        <div class="first"><input type="text" value="{{firstValue}}" /></div>
+        <div class="last"><input type="text" value="{{lastValue}}" /></div>
+        <a href="#" class="remove">Remove</a>
+      </div>
+    </script>
+
+    <script type="text/html" id="fields-template">
+      {{#values}}
+        {{> fieldPartial}}
+      {{/values}}
+    </script>
+
+  </body>
+</html>
+
